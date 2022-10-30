@@ -1,0 +1,50 @@
+{% extends "includes/layout.html" %}
+
+
+{% block content %}
+    <!--Bootstrap Table-->
+    {% for class in classes %}
+    {% if class.r1 %}
+    <table class="table">
+            <!--Table Head - Dark-->
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Event Name</th>
+            <th scope="col">Event Date</th>
+          </tr>
+        </thead>
+        <tbody>
+            <!--Table Row-->
+
+
+          <tr>
+            <td scope="row">{{ class.r1['Event_Name'] }}</td>
+            <td>{{ class.r1['Event_Date'] }}</td>
+            <td> 
+              <form name = 'update' action="{{ url_for('Update_event') }}" method="post" novalidate>
+                <input type="hidden" name="event_id" value="{{ class.r1['event_id'] }}" />
+                <input type="hidden" name="Event_Name" value="{{ class.r1['Event_Name'] }}" />
+                <input type="hidden" name="Event_Date" value="{{ class.r1['Event_Date'] }}" />
+                <button type="submit" class="btn btn-primary">Reschedule</button>
+              </form>
+            </td>
+            <td> 
+              <form name = 'delete' action="{{ url_for('delete') }}" method="post" novalidate>
+                <input type="hidden" name="event_id" value="{{ class.r1['event_id'] }}" />
+                <input type="hidden" name="Event_Name" value="{{ class.r1['Event_Name'] }}" />
+                <input type="hidden" name="Event_Date" value="{{ class.r1['Event_Date'] }}" />
+                <button type="submit" class="btn btn-primary">Cancel</button>
+              </form>
+            </td>
+          </tr>
+          {% else %}
+          <h3>You don't have any Scheduled Event</h3>
+          <a href="schedule">Schedule an Event Now</a>
+          {% endif %}
+          {% endfor %}
+          
+
+
+        </tbody>
+        </table>
+{% endblock %}

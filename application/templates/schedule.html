@@ -1,0 +1,16 @@
+{% extends "includes/layout.html" %}
+
+{% block content %}
+<form name = 'event' action="" method="post" novalidate>
+  {{ form.hidden_tag() }}
+        <div class="form-group">
+          {{ form.Event_Name.label }}
+          {{ form.Event_Name(class="form-control") }}
+        </div>
+        <div class="form-group">
+          {{ form.Event_Date.label }}
+          {{ form.Event_Date(class="form-control") }}
+        </div>
+        {{ form.submit(class = "btn btn-primary") }}
+      </form>
+{% endblock %}

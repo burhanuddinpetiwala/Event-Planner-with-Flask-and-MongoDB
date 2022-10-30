@@ -1,0 +1,19 @@
+{% extends "includes/layout.html" %}
+
+{% block content %}
+
+{% for data in EventData %}
+<form name = 'update' action="{{ url_for('event') }}" method="post">
+        <div class="form-group">
+          <input type="hidden" name="event_id" value = "{{ data['event_id'] }}">
+        </div>
+        <div class="form-group">
+          <input type="text" name="Event_Name" value="{{ data['Event_Name'] }}">
+        </div>
+        <div class="form-group">
+            <input type="date" name="Event_Date" value="{{ data['Event_Date'] }}">
+        </div>
+        <button>Reschedule</button>
+      </form>
+      {% endfor %}
+{% endblock %}
