@@ -81,6 +81,7 @@ def login():
         user = User.objects(Email=email).first()
         if user and user.get_password(password):         
             flash(f"{user.First_Name}You are logged in!", "success")
+            session.clear()
             session['user_id'] = user.user_id
             session['username'] = user.First_Name
             return redirect("/index")
@@ -90,7 +91,8 @@ def login():
 
 @app.route('/logout')
 def logout():
-    session['user_id'] = False
+    session.clear()
+    session['logout'] = False
     session.pop('username', None)
     return redirect(url_for('index'))
 

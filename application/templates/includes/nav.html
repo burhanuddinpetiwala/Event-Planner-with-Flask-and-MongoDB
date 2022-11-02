@@ -9,7 +9,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ url_for('event') }}" class="nav-link {% if event %}active{% endif %}" >Check Event</a>
       </li>
-      {% if session.get('user_id') == False%}
+      {% if session.get('logout') == False%}
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('login') }}" class="nav-link {% if login %}active{% endif %}" >Login</a>
       </li>
